@@ -1,0 +1,35 @@
+setting:
+  seed: 42
+  from_checkpoint: ckpt/Evolla-10B
+
+model:
+  cls: model/Evolla/Evolla_model.py
+  generate_config:
+    max_new_tokens: 512
+    do_sample: True
+    temperature: 0.6
+    top_p: 0.9
+  config:
+    text_length: 2048
+    protein_encoder:
+      cls: model/Evolla/sequence_encoder_saprot.py
+      config_path: /storage/zhouxibin/workspaces/ProteinQA/Models/SaProt_650M_AF2
+      # enable_lora: false
+      # enable_mlm_loss: false
+      # mlm_loss_scale: 0.1
+      fusion_module:
+        cls: SequenceCompressorResampler
+        depth: 6
+        heads: 8
+        num_latents: 64
+        ff_mult: 4
+    llm:
+      cls: model/Evolla/llama_llm.py
+      hf_dir: /storage/zhouxibin/workspaces/ProteinQA/Models/meta-llama_Meta-Llama-3-8B-Instruct
+      # attn_implementation: eager
+      cross_attention_config:
+        ffn_mult: 4
+        enable_bias: true
+        attention_probs_dropout_prob: 0.1
+      quantization: 8bit
+      # quantization: false
