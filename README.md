@@ -2,6 +2,7 @@
 
 <a href="https://doi.org/10.1101/2025.01.05.630192"><img src="https://img.shields.io/badge/Paper-bioRxiv-green" style="max-width: 100%;"></a>
 <a href="https://huggingface.co/westlake-repl/Evolla-10B"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-red?label=Model" style="max-width: 100%;"></a>
+<a href="https://x.com/duguyuan/status/1876446845951492221"><img src="https://img.shields.io/badge/Post-X-black" style="max-width: 100%;"></a>
 
 A frontier protein-language generative model designed to decode the molecular language of proteins.
 
