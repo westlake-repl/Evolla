@@ -1,6 +1,7 @@
 setting:
   seed: 42
-  from_checkpoint: ckpt/Evolla-10B
+  # from_checkpoint: ckpt/Evolla-10B
+  from_checkpoint: ckpt/huggingface/Evolla-10B/Evolla-10B
 
 model:
   cls: model/Evolla/Evolla_model.py
