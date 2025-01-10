@@ -81,5 +81,12 @@ If you find this repository useful, please cite our paper:
   pages={2025--01},
   year={2025},
   publisher={Cold Spring Harbor Laboratory}
+
+### Other resources
+
+- [ProTrek](https://www.biorxiv.org/content/10.1101/2024.05.30.596740v2) and its [online server](http://search-protrek.com/)
+- [Pinal](https://www.biorxiv.org/content/10.1101/2024.08.01.606258v2) and its [online server](http://www.denovo-pinal.com/)
+- [SaprotHub] (https://www.biorxiv.org/content/10.1101/2024.05.24.595648v5) and its [online server](https://colab.research.google.com/github/westlake-repl/SaprotHub/blob/main/colab/SaprotHub_v2.ipynb?hl=en)
+
 }
 ```
