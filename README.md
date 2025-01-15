@@ -6,6 +6,8 @@
 
 A frontier protein-language generative model designed to decode the molecular language of proteins.
 
+*Quickly try our online server (Evolla-10B) [here](http://www.chat-protein.com/).*
+
 <details open><summary><b>Table of contents</b></summary>
 
 - [News](#News)
