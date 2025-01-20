@@ -162,7 +162,6 @@ class EvollaModel(pl.LightningModule):
         self,
         questions: list,
         answers: list = None,
-        # raw_text_lists: list = None,
     ):
         """
         Args:
@@ -230,12 +229,8 @@ class EvollaModel(pl.LightningModule):
             msa_batch_mask = None
 
         input_ids, embeds, attns, labels, raw_text_masks = self.input_process(
-            # protein_embeds=resampler_protein_repr,
-            # structure_embeds=resampler_structure_repr,
-            # templates=templates,
             questions=questions,
             answers=answers,
-            # raw_text_lists=raw_text_lists,
         )
 
         outputs = self.llm.forward(
