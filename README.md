@@ -77,7 +77,7 @@ If you find this repository useful, please cite our paper:
 
 ```
 @article{zhou2025decoding,
-  title={Decoding the Molecular Language of Proteins with Evola},
+  title={Decoding the Molecular Language of Proteins with Evolla},
   author={Zhou, Xibin and Han, Chenchen and Zhang, Yingqi and Su, Jin and Zhuang, Kai and Jiang, Shiyu and Yuan, Zichen and Zheng, Wei and Dai, Fengyuan and Zhou, Yuyang and others},
   journal={bioRxiv},
   pages={2025--01},
