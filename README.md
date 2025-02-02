@@ -46,6 +46,10 @@ We provide the pre-trained Evolla-10B model in `huggingface hub`. You can downlo
 ```
 cd ckpt/huggingface
 git clone https://huggingface.co/westlake-repl/Evolla-10B
+
+git clone https://huggingface.co/westlake-repl/SaProt_650M_AF2
+
+git clone https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct
 ```
 
 ### Model checkpoints
