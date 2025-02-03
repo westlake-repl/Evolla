@@ -45,6 +45,9 @@ bash environment.sh
 We provide the pre-trained Evolla-10B model in `huggingface hub`. You can download the model by running the following command:
 ```
 cd ckpt/huggingface
+
+git lfs install
+
 git clone https://huggingface.co/westlake-repl/Evolla-10B
 
 git clone https://huggingface.co/westlake-repl/SaProt_650M_AF2
@@ -71,8 +74,11 @@ Note: `protein_id` is the identifier of the line, `aa_sequence` is the amino aci
 
 The following provides script to run inference based on tsv file.
 
+You should replace the `/your/path/to/Evolla` to your own path to `Evolla` directory.
+
 ```
-python inference.py --config_path config/Evolla_10B.yaml --input_path examples/inputs.tsv
+cd /your/path/to/Evolla
+python scripts/inference.py --config_path config/Evolla_10B.yaml --input_path examples/inputs.tsv
 ```
 
 ## Citation
