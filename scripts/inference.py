@@ -4,10 +4,13 @@ HOME_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(HOME_PATH)
 
 import argparse
+import json
 
 import traceback
 from threading import Thread
 from utils.others import setup_seed, load_config, load_model_from_config
+
+from transformers import TextIteratorStreamer
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--config_path", type=str, required=True)
@@ -23,8 +26,6 @@ if config.setting.seed:
 
 
 model = load_model_from_config(config, local_rank=0, dtype="bf16")
-from transformers import TextIteratorStreamer
-import json
 
 with open(input_path, "r") as f:
     for line in f:

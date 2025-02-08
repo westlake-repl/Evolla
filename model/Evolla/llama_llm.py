@@ -116,8 +116,19 @@ def add_adapter_for_LlamaForCausalLM(llama_for_causalLM, cross_attention_config,
     # follow the same config as the original model
     if num_add_layers < 1:
         return llama_for_causalLM
-    cross_attention_config["num_attention_heads"] = llama_for_causalLM.model.layers[0].self_attn.num_heads
-    cross_attention_config["hidden_size"] = llama_for_causalLM.model.layers[0].self_attn.hidden_size
+    if hasattr(llama_for_causalLM.model.layers[0].self_attn, "num_heads"):
+        cross_attention_config["num_attention_heads"] = llama_for_causalLM.model.layers[0].self_attn.num_heads
+    elif hasattr(llama_for_causalLM.model.layers[0].self_attn.config, "num_attention_heads"):
+        cross_attention_config["num_attention_heads"] = llama_for_causalLM.model.layers[0].self_attn.config.num_attention_heads
+    else:
+        raise ValueError("Cannot find num_heads or num_attention_heads in self_attn of the first layer of the model.")
+    
+    if hasattr(llama_for_causalLM.model.layers[0].self_attn, "hidden_size"):
+        cross_attention_config["hidden_size"] = llama_for_causalLM.model.layers[0].self_attn.hidden_size
+    elif hasattr(llama_for_causalLM.model.layers[0].self_attn.config, "hidden_size"):
+        cross_attention_config["hidden_size"] = llama_for_causalLM.model.layers[0].self_attn.config.hidden_size
+    else:
+        raise ValueError("Cannot find hidden_size in self_attn of the first layer of the model.")
 
     num_layers = len(llama_for_causalLM.model.layers)
     every_n_layers = max(num_layers // num_add_layers, 1)
@@ -151,6 +162,7 @@ def bind_forward_for_llama(llama_for_causalLM):
         protein_batch_mask: Optional[torch.Tensor] = None,
         structure_batch_mask: Optional[torch.Tensor] = None,
         msa_batch_mask: Optional[torch.Tensor] = None,
+        **kwargs,
     ) -> Union[Tuple, BaseModelOutputWithPast]:
         output_attentions = (
             output_attentions
@@ -345,6 +357,7 @@ def bind_forward_for_llama(llama_for_causalLM):
         protein_batch_mask: Optional[torch.Tensor] = None,
         structure_batch_mask: Optional[torch.Tensor] = None,
         msa_batch_mask: Optional[torch.Tensor] = None,
+        **kwargs
     ) -> Union[Tuple, CausalLMOutputWithPast]:
         r"""
         Args:
@@ -594,6 +607,7 @@ class LlamaAdapterModel(nn.Module):
         protein_batch_mask,
         structure_batch_mask,
         msa_batch_mask,
+        **kwargs
     ):
         output = self.model.forward(
             input_ids=input_ids,
