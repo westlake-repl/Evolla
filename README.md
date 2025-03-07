@@ -19,7 +19,8 @@ A frontier protein-language generative model designed to decode the molecular la
 - [Citation](#Citation)
 </details>
 
-
+> We have 2 PhD positions for international students at Westlake University, China! see [here](https://x.com/duguyuan/status/1897101692665258245).
+> 
 ## News
 - **2025/01/06** We released our paper [Decoding the Molecular Language of Proteins with Evolla](https://doi.org/10.1101/2025.01.05.630192).
 - **2024/12/06** We uploaded the [Evolla-10B model](https://huggingface.co/westlake-repl/Evolla-10B) to `huggingface hub`.
