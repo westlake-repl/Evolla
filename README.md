@@ -116,7 +116,28 @@ All rows are Hugging Face Hub repos. Names ending in **`‑hf`** ship the Transf
 
 ## Prepare input data
 
-Sample file: `examples/inputs.tsv`. Each row is a tab-separated `(protein_id, aa_sequence, foldseek_sequence, question_in_json_string)`.
+Evolla batch inference expects a TSV like `examples/inputs.tsv`. To build it from **structures** (PDB or mmCIF) instead of hand-writing sequences:
+
+1. **Foldseek** — Install a working [`foldseek`](https://github.com/steineggerlab/foldseek/releases) binary and pass its path to the helper script (default in the script is only an example; use your own install).
+2. **Structures** — Put the chains you care about in one directory per batch (`.pdb` / `.cif` files).
+3. **Questions** — Supply prompts with repeated `--question "..."` and/or a `--questions-file` with one question per line (blank lines ignored). You can combine both.
+
+**Multiple questions → Cartesian product.** `get_input_files.py` writes one row per (structure file, question) pair. If you have *m* questions and *n* proteins (structure files) in a directory, the generated TSV has *m*×*n* lines—every question is paired with every structure.
+
+From the repo root, generate a TSV (see `python scripts/get_input_files.py --help` for all flags):
+
+```bash
+PYTHONPATH=. python scripts/get_input_files.py \
+  --foldseek /path/to/foldseek \
+  --structure-result path/to/structures_dir path/to/output.tsv \
+  --question "What is the catalytic activity of this protein?"
+```
+
+Use `--rewrite` to overwrite an existing output file. Repeat `--structure-result DIR OUT.tsv` for multiple directory → output pairs.
+
+### TSV format
+
+Each row is tab-separated: `(protein_id, aa_sequence, foldseek_sequence, question_in_json_string)`.
 
 | Column | Meaning |
 | --- | --- |
