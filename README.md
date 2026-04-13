@@ -135,6 +135,8 @@ PYTHONPATH=. python scripts/get_input_files.py \
 
 Use `--rewrite` to overwrite an existing output file. Repeat `--structure-result DIR OUT.tsv` for multiple directory → output pairs.
 
+**Confidence-aware Foldseek tokens.** Predicted structures (for example from AlphaFold) are not uniformly reliable at every residue. To avoid over-weighting uncertain regions, `get_input_files.py` follows the convention used in this project: where **per-residue pLDDT is below 70**, the corresponding **Foldseek 3Di** character is replaced with **`#`** (masking), so low-confidence geometry contributes less to the structural string. If you build the `foldseek_sequence` column yourself from **raw** Foldseek output without a similar mask, the distribution may diverge somewhat from what the model saw during training, and **answers can be a bit less reliable** than with this preprocessing. For best alignment with the released checkpoints, we recommend keeping the same masking rule when you can.
+
 ### TSV format
 
 Each row is tab-separated: `(protein_id, aa_sequence, foldseek_sequence, question_in_json_string)`.
