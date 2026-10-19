@@ -9,8 +9,6 @@
 
 Decoding the molecular language of proteins — generate, predict, and (politely) interrogate sequences.
 
-**Try it live:** [Evolla-10B chat server](http://www.chat-protein.com/) — no pip install required for curiosity.
-
 <details open><summary><b>Table of contents</b> <em>(pick your adventure)</em></summary>
 
 - [News](#news)
